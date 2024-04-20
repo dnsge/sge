@@ -1,0 +1,13 @@
+{
+    "actors": [
+        {
+            "name": "joiner",
+            "components": {
+                "1": {
+                    "type": "ClientJoiner",
+                    "realm": "client"
+                }
+            }
+        }
+    ]
+}

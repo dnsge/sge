@@ -1,0 +1,9 @@
+If:
+  PathExclude: include/.*
+CompileFlags:
+  CompilationDatabase: build/compile_commands.json
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+  Includes:
+    IgnoreHeader: glm/.*|SDL.*|lua.*|box2d/.*|msgpack.*

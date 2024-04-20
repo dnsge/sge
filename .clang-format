@@ -1,0 +1,66 @@
+AccessModifierOffset: -4
+AlignArrayOfStructures: Right
+AlignEscapedNewlines: Left
+AlignTrailingComments: true
+AllowAllConstructorInitializersOnNextLine: true
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Empty
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: true
+BasedOnStyle: Google
+BinPackArguments: false
+BraceWrapping:
+  AfterEnum: false
+  AfterControlStatement: false
+BreakBeforeBraces: Attach
+BreakConstructorInitializers: BeforeComma
+ColumnLimit: 100
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+DerivePointerAlignment: false
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^\"'
+    Priority: 100
+  - Regex: '^<LuaBridge/.*'
+    Priority: 200
+    SortPriority: 2
+  - Regex: '^<[^>]*/'
+    Priority: 200
+    SortPriority: 1
+  - Regex: '^<[^/>]*>'
+    Priority: 300
+IndentAccessModifiers: false
+IndentCaseBlocks: true
+IndentCaseLabels: false
+IndentPPDirectives: AfterHash
+IndentRequiresClause: false
+IndentWidth: 4
+InsertTrailingCommas: Wrapped
+Language: Cpp
+NamespaceIndentation: None
+PointerAlignment: Left
+ReferenceAlignment: Right
+ReflowComments: false
+RequiresClausePosition: OwnLine
+SortIncludes: true
+SortUsingDeclarations: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatementsExceptForEachMacros
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+SpacesInAngles: false
+SpacesInConditionalStatement: false
+Standard: c++17
+TabWidth: 4
+UseCRLF: false
+UseTab: Never

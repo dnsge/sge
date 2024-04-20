@@ -1,0 +1,4 @@
+include/** linguist-vendored
+lib/** linguist-vendored
+Frameworks/** linguist-vendored
+include/dnsge/** -linguist-vendored

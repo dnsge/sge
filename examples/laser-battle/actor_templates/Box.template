@@ -1,0 +1,14 @@
+{
+    "name": "Box",
+    "components": {
+        "1": {
+            "type": "SpriteRenderer",
+            "realm": "client",
+            "sprite": "box2"
+        },
+        "2": {
+            "type": "Transform",
+            "realm": "server_replicated"
+        }
+    }
+}

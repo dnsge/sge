@@ -1,0 +1,50 @@
+{
+    "name": "battle_ship",
+    "components": {
+        "transform": {
+            "type": "InterpTransform",
+            "realm": "server_replicated"
+        },
+        "health": {
+            "type": "PlayerHealth",
+            "realm": "server_replicated"
+        },
+        "1": {
+            "type": "KeyboardControls",
+            "realm": "owner",
+            "transform_component": "transform",
+            "replicate_transform": true,
+            "velocity": 3
+        },
+        "2": {
+            "type": "PointTowardsMouse",
+            "realm": "owner",
+            "transform_component": "transform",
+            "replicate_transform": true
+        },
+        "3": {
+            "type": "ArenaTrap",
+            "realm": "owner",
+            "arena_actor_name": "Arena",
+            "transform_component": "transform"
+        },
+        "4": {
+            "type": "Shoot",
+            "realm": "owner",
+            "transform_component": "transform",
+            "bullet_template": "LaserBullet",
+            "bullet_transform_component": "transform"
+        },
+        "5": {
+            "type": "SpriteRenderer",
+            "realm": "client",
+            "sprite": "spaceship",
+            "sorting_order": 10,
+            "transform_component": "transform"
+        },
+        "6": {
+            "type": "HealthUI",
+            "realm": "owner"
+        }
+    }
+}

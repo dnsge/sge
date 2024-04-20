@@ -1,0 +1,20 @@
+{
+    "actors": [
+        {
+			"name": "basic_actor",
+			"components": {
+				"1": {
+					"type": "SpriteRenderer",
+					"realm": "client",
+					"sprite": "box1"
+				},
+				"2": {
+					"type": "Transform",
+					"realm": "server_replicated",
+                    "x": 1,
+                    "y": 1
+				}
+			}
+		}
+    ]
+}

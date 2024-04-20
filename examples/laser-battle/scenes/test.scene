@@ -1,0 +1,10 @@
+{
+    "actors": [
+        {
+            "template": "BattleShip"
+        },
+        {
+            "template": "Arena"
+        }
+    ]
+}

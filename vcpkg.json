@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "sage-engine",
+  "dependencies": [
+    "sdl2",
+    "sdl2-image",
+    "sdl2-ttf",
+    "sdl2-mixer",
+    "boost-core",
+    "boost-asio",
+    "boost-system",
+    "boost-thread",
+    "boost-circular-buffer",
+    "boost-lockfree",
+    "boost-variant",
+    "boost-lexical-cast",
+    "boost-preprocessor",
+    "boost-assert",
+    "boost-fusion",
+    "boost-mpl",
+    "boost-utility"
+  ]
+}

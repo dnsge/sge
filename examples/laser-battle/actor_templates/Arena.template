@@ -1,0 +1,11 @@
+{
+    "name": "Arena",
+    "components": {
+        "1": {
+            "type": "Arena",
+            "realm": "server_replicated",
+            "width": 8,
+            "height": 4
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "actors": [
+        {
+            "components": {
+                "1": {
+                    "type": "LobbyManager",
+                    "realm": "server"
+                },
+                "2": {
+                    "type": "LobbyStatus",
+                    "realm": "client"
+                }
+            }
+        }
+    ]
+}

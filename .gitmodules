@@ -1,0 +1,12 @@
+[submodule "lib/rapidjson"]
+	path = lib/rapidjson
+	url = https://github.com/Tencent/rapidjson.git
+[submodule "lib/glm"]
+	path = lib/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "lib/msgpack-c"]
+	path = lib/msgpack-c
+	url = https://github.com/msgpack/msgpack-c.git
+[submodule "lib/recursive-variant"]
+	path = lib/recursive-variant
+	url = https://github.com/codeinred/recursive-variant.git

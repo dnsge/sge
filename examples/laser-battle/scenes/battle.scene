@@ -1,0 +1,17 @@
+{
+    "actors": [
+        {
+            "name": "BattleManager",
+            "components": {
+                "1": {
+                    "type": "BattleManager",
+                    "realm": "server",
+                    "starting_radial_distance": 2.5
+                }
+            }
+        },
+        {
+            "template": "Arena"
+        }
+    ]
+}

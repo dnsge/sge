@@ -1,0 +1,33 @@
+{
+    "components": {
+        "transform": {
+            "type": "InterpTransform",
+            "realm": "server_replicated"
+        },
+        "1": {
+            "type": "ConstantVelocity",
+            "realm": "owner",
+            "transform_component": "transform",
+            "replicate_transform": true
+        },
+        "2": {
+            "type": "ArenaDestroyer",
+            "realm": "owner",
+            "arena_actor_name": "Arena",
+            "transform_component": "transform"
+        },
+        "3": {
+            "type": "Damager",
+            "realm": "owner",
+            "transform_component": "transform",
+            "player_transform_component": "transform",
+            "damage_radius": 0.25
+        },
+        "4": {
+            "type": "SpriteRenderer",
+            "realm": "client",
+            "sprite": "laserBullet",
+            "transform_component": "transform"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "components": {
+        "1": {
+            "type": "SpectatorText",
+            "realm": "owner"
+        }
+    }
+}
