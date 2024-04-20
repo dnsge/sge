@@ -1,6 +1,4 @@
 add_library(sge-lib OBJECT
-    AudioPlayer.cpp
-    AudioPlayer.hpp
     Constants.hpp
     Debug.hpp
     Realm.hpp
@@ -175,6 +173,8 @@ if(BUILD_CLIENT)
     add_executable(sge-client
         Realm.cpp
 
+        client/AudioPlayer.cpp
+        client/AudioPlayer.hpp    
         client/Client.cpp
         client/Client.hpp
         client/ClientInterface.cpp

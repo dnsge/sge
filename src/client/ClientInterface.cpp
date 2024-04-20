@@ -1,10 +1,10 @@
 #include "client/ClientInterface.hpp"
 
-#include "AudioPlayer.hpp"
 #include "Client.hpp"
 #include "Common.hpp"
 #include "Constants.hpp"
 #include "Types.hpp"
+#include "client/AudioPlayer.hpp"
 #include "game/Actor.hpp"
 #include "game/Input.hpp"
 #include "gea/AudioHelper.h"
