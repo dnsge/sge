@@ -4,8 +4,6 @@ BattleManager = {
 }
 
 function BattleManager:OnStart()
-    self.battle_state = self.actor:GetComponent("BattleState")
-
     local players = Multiplayer.JoinedClients()
     local count = #players
     local radial_spacing = 2 * math.pi / count
