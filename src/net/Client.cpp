@@ -157,7 +157,7 @@ void Client::connect(std::string_view host, std::string_view port) {
     }
 
     if (best.has_value()) {
-        this->connect(*i);
+        this->connect(*best);
     } else {
         throw std::runtime_error("failed to resolve host/port endpoint");
     }
