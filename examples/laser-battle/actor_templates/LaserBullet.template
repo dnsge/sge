@@ -1,4 +1,6 @@
 {
+    "name": "bullet",
+    "defer_server_destroys": true,
     "components": {
         "transform": {
             "type": "InterpTransform",
