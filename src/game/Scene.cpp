@@ -116,7 +116,7 @@ void Scene::removeDestroyedActors() {
     auto it = std::remove_if(
         this->actors_.begin(), this->actors_.end(), [&](const std::unique_ptr<Actor> &a) {
             assert(a != nullptr);
-            if (!a->destroyed) {
+            if (!a->destroyed()) {
                 return false;
             }
 
@@ -144,7 +144,7 @@ void Scene::insertInstantiatedActors() {
 
 Actor* Scene::findActor(std::string_view name) {
     auto nameCompare = [&](const auto &a) -> bool {
-        return a->name == name && !a->destroyed;
+        return a->name == name && !a->destroyed();
     };
 
     // Check existing actors
@@ -167,12 +167,12 @@ Actor* Scene::findActor(std::string_view name) {
 std::vector<Actor*> Scene::findAllActors(std::string_view name) {
     std::vector<Actor*> results;
     for (auto &actor : this->actors_) {
-        if (actor->name == name && !actor->destroyed) {
+        if (actor->name == name && !actor->destroyed()) {
             results.push_back(actor.get());
         }
     }
     for (auto &actor : this->pendingInstantiatedActors_) {
-        if (actor->name == name && !actor->destroyed) {
+        if (actor->name == name && !actor->destroyed()) {
             results.push_back(actor.get());
         }
     }

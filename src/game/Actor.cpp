@@ -124,6 +124,10 @@ Actor::Actor(actor_id_t id, bool runtime, const resources::ActorDescription &sou
     this->components = constructComponentsForActor(source, *this);
 }
 
+bool Actor::destroyed() const {
+    return this->lifecycleState == ActorLifecycleState::Destroyed;
+}
+
 bool Actor::runtime() const {
     return !this->runtimeTemplate_.empty();
 }
@@ -133,7 +137,7 @@ const std::string &Actor::runtimeTemplate() {
 }
 
 bool Actor::runLifecycleFunctions() const {
-    return this->alive && !this->destroyed;
+    return this->lifecycleState == ActorLifecycleState::Alive;
 }
 
 void Actor::onStart() {
@@ -235,14 +239,12 @@ void Actor::removeComponent(const luabridge::LuaRef &ref) {
 }
 
 void Actor::destroy() {
-    this->alive = false;
-    this->destroyed = true;
+    this->lifecycleState = ActorLifecycleState::Destroyed;
     CurrentReplicatorService().destroy(this);
 }
 
 void Actor::destroyLocally() {
-    this->alive = false;
-    this->destroyed = true;
+    this->lifecycleState = ActorLifecycleState::Destroyed;
     CurrentReplicatorService().erasePendingReplications(this);
 }
 

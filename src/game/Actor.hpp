@@ -24,6 +24,12 @@ class Component;
 
 namespace game {
 
+enum class ActorLifecycleState {
+    Uninitialized,
+    Alive,
+    Destroyed,
+};
+
 class Actor {
 public:
     Actor(actor_id_t id, bool runtime, const resources::ActorDescription &source);
@@ -34,10 +40,10 @@ public:
 
     std::string_view name{};
     scripting::ComponentContainer components{};
-    bool alive{false};
-    bool destroyed{false};
+    ActorLifecycleState lifecycleState{ActorLifecycleState::Uninitialized};
     bool persistent{false};
 
+    bool destroyed() const;
     bool runtime() const;
     const std::string &runtimeTemplate();
 

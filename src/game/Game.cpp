@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <glm/glm.hpp>
 
+#include "game/Actor.hpp"
 #include "game/Scene.hpp"
 #include "physics/Collision.hpp"
 #include "physics/World.hpp"
@@ -77,8 +78,8 @@ void Game::updateOnStart() {
     assert(this->scene_ != nullptr);
     // Execute all pending OnStart calls
     for (auto &actor : this->scene_->actors()) {
-        if (!actor->alive && !actor->destroyed) {
-            actor->alive = true;
+        if (actor->lifecycleState == ActorLifecycleState::Uninitialized) {
+            actor->lifecycleState = ActorLifecycleState::Alive;
         }
         TRACE_BEGIN("OnStart", actor->getName());
         actor->onStart();
