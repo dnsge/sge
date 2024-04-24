@@ -390,6 +390,7 @@ void InitializeScriptingClasses() {
             .addFunction("AddComponent", &game::Actor::addComponent)
             .addFunction("RemoveComponent", &game::Actor::removeComponent)
             .addFunction("GetOwner", &game::Actor::getOwnerClient)
+            .addFunction("PendingServerDestroy", &game::Actor::pendingServerDestroy)
         .endClass()
         .beginClass<glm::vec2>("vec2")
             .addProperty("x", &glm::vec2::x)

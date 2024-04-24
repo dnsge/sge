@@ -220,6 +220,9 @@ void ReplicatorService::instantiate(game::Actor* actor) {
 void ReplicatorService::replicate(scripting::Component* component) {
     if (component->realm != Realm::ServerReplicated) {
         throw std::runtime_error("tried to replicate non-server_replicated component");
+    } else if (component->actor->pendingServerDestroy()) {
+        // Ignore replications if the actor has already been destroyed on the server
+        return;
     }
     this->toReplicate_.insert(component);
 }

@@ -79,6 +79,7 @@ void EnsureResourcesDirectoryExists() {
 void DeserializeActor(const rapidjson::Value::ConstObject &doc, ActorDescription &actor) {
     actor.template_name = GetKeySafe<std::string>(doc, "template");
     actor.name = GetKeySafe<std::string>(doc, "name");
+    actor.deferServerDestroys = GetKeyOrZero<bool>(doc, "defer_server_destroys");
 
     auto components = GetObjectSafe(doc, "components");
     if (components.has_value()) {
@@ -138,6 +139,7 @@ ActorTemplateDescription LoadActorTemplate(std::string_view name) {
     ReadJsonFile(scenePath, doc);
 
     actor.name = GetKeyOrZero<std::string>(doc, "name");
+    actor.deferServerDestroys = GetKeyOrZero<bool>(doc, "defer_server_destroys");
     auto components = GetObjectSafe(doc, "components");
     if (components.has_value()) {
         for (const auto &member : *components) {

@@ -293,8 +293,10 @@ void Client::processMessage(const net::MessageTickReplication &m) {
         if (a == nullptr) {
             continue;
         }
-        // Destroy it. Don't replicate the destruction because the server already knows.
-        a->destroyLocally();
+        // Tell the actor the server has requested it to be destroyed. If the actor
+        // is configured to defer the destruction, it will continue to live until
+        // a lifecycle function eventually calls Actor.Destroy on a.
+        a->serverRequestedDestroy();
     }
 }
 

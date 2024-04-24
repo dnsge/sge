@@ -106,9 +106,11 @@ Actor::Actor(actor_id_t id, bool runtime, const resources::ActorDescription &sou
         // Initialize with template data
         const auto &actorTemplate = resources::GetActorTemplateDescription(*source.template_name);
         this->name = actorTemplate.name;
+        this->deferServerDestroys = actorTemplate.deferServerDestroys;
     } else {
         // Initialize with defaults
         this->name = ""sv;
+        this->deferServerDestroys = false;
     }
 
     if (runtime) {
@@ -119,6 +121,7 @@ Actor::Actor(actor_id_t id, bool runtime, const resources::ActorDescription &sou
 
     // Apply any POD overrides
     applyOverride(this->name, source.name);
+    applyOverride(this->deferServerDestroys, source.deferServerDestroys);
 
     // Construct component instances
     this->components = constructComponentsForActor(source, *this);
@@ -137,7 +140,14 @@ const std::string &Actor::runtimeTemplate() {
 }
 
 bool Actor::runLifecycleFunctions() const {
-    return this->lifecycleState == ActorLifecycleState::Alive;
+    switch (this->lifecycleState) {
+    case ActorLifecycleState::Alive:
+    case ActorLifecycleState::PendingServerDestroy:
+        return true;
+    case ActorLifecycleState::Uninitialized:
+    case ActorLifecycleState::Destroyed:
+        return false;
+    }
 }
 
 void Actor::onStart() {
@@ -238,14 +248,32 @@ void Actor::removeComponent(const luabridge::LuaRef &ref) {
     this->components.removeComponentLater(component);
 }
 
+bool Actor::pendingServerDestroy() const {
+    return this->lifecycleState == ActorLifecycleState::PendingServerDestroy;
+}
+
 void Actor::destroy() {
-    this->lifecycleState = ActorLifecycleState::Destroyed;
-    CurrentReplicatorService().destroy(this);
+    if (this->deferServerDestroys &&
+        this->lifecycleState == ActorLifecycleState::PendingServerDestroy) {
+        this->destroyLocally();
+    } else {
+        this->lifecycleState = ActorLifecycleState::Destroyed;
+        CurrentReplicatorService().destroy(this);
+    }
 }
 
 void Actor::destroyLocally() {
     this->lifecycleState = ActorLifecycleState::Destroyed;
     CurrentReplicatorService().erasePendingReplications(this);
+}
+
+void Actor::serverRequestedDestroy() {
+    if (this->deferServerDestroys) {
+        this->lifecycleState = ActorLifecycleState::PendingServerDestroy;
+        CurrentReplicatorService().erasePendingReplications(this);
+    } else {
+        this->destroyLocally();
+    }
 }
 
 } // namespace sge::game

@@ -47,7 +47,16 @@ void InterpTransform::setValues(
 }
 
 void InterpTransform::onUpdate(float dt) {
-    if (this->interps_.empty() || CurrentRealm() != GeneralRealm::Client) {
+    if (CurrentRealm() != GeneralRealm::Client) {
+        return;
+    }
+
+    if (this->interps_.empty()) {
+        if (this->actor->pendingServerDestroy()) {
+            // We have no more interpolated movement so we can go ahead and actually
+            // destroy this actor for good.
+            this->actor->destroy();
+        }
         return;
     }
 

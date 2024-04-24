@@ -47,6 +47,7 @@ struct ComponentDefinition {
 struct ActorDescription {
     std::optional<std::string> template_name{};
     std::optional<std::string> name{};
+    std::optional<bool> deferServerDestroys{};
     std::map<std::string, ComponentDefinition> components{};
 };
 
@@ -54,6 +55,7 @@ void DeserializeActor(const rapidjson::Value::ConstObject &doc, ActorDescription
 
 struct ActorTemplateDescription {
     std::string name;
+    bool deferServerDestroys{false};
     std::map<std::string, ComponentDefinition> components{};
 };
 

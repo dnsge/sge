@@ -27,6 +27,7 @@ namespace game {
 enum class ActorLifecycleState {
     Uninitialized,
     Alive,
+    PendingServerDestroy,
     Destroyed,
 };
 
@@ -42,6 +43,7 @@ public:
     scripting::ComponentContainer components{};
     ActorLifecycleState lifecycleState{ActorLifecycleState::Uninitialized};
     bool persistent{false};
+    bool deferServerDestroys{false};
 
     bool destroyed() const;
     bool runtime() const;
@@ -74,8 +76,10 @@ public:
     scripting::Component* addComponent(std::string_view type);
     void removeComponent(const luabridge::LuaRef &ref);
 
+    bool pendingServerDestroy() const;
     void destroy();
     void destroyLocally();
+    void serverRequestedDestroy();
 
 private:
     std::string runtimeTemplate_{};
